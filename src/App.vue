@@ -2,47 +2,41 @@
     <div id="app">
         <el-container style="height: 100%">
             <el-aside width="200px" style="background-color:#272D34">
-                <el-row style="width:100%;height: 60px;line-height:60px;text-align: center;color: #fff;">
-                    <p>VuePractice</p>
-                </el-row>
-                <el-row class="tac">
-                    <el-col>
-                        <el-menu
-                                :default-active="this.$router.path"
-                                class="el-menu-vertical-demo"
-                                router
-                                active-text-color='#29A88D'
-                                background-color="#272D34"
-                                text-color="#fff"
-                                :collapse-transition="true"
-                                @open="handleOpen"
-                                @close="handleClose"
-                        >
-                            <div v-for="(item,key) in navList" :key="key">
-                                <!--存在子节点-->
-                                <el-submenu v-if="!item.linkTo" :index="item.name" :show-timeout=5000 :hide-timeout=5000>
+                <p style="width:100%;height: 60px;line-height:60px;text-align: center;color: #fff;">VuePractice</p>
+                <el-menu
+                            :default-active="this.$router.path"
+                            class="el-menu-vertical-demo"
+                            router
+                            active-text-color='#29A88D'
+                            background-color="#272D34"
+                            text-color="#fff"
+                            :collapse-transition="true"
+                            @open="handleOpen"
+                            @close="handleClose"
+                    >
+                        <div v-for="(item,key) in navList" :key="key">
+                            <!--存在子节点-->
+                            <el-submenu v-if="!item.linkTo" :index="item.name" :show-timeout=5000 :hide-timeout=5000>
+                                <template slot="title">
+                                    <i :class="item.icon"></i>
+                                    <span>{{item.name}}</span>
+                                </template>
+                                <el-menu-item :index="val.linkTo" v-for="val in item.childNode" :key="val.name">
                                     <template slot="title">
-                                        <i :class="item.icon"></i>
-                                        <span>{{item.name}}</span>
-                                    </template>
-                                    <el-menu-item :index="val.linkTo" v-for="val in item.childNode" :key="val.name">
-                                        <template slot="title">
-                                            <i :class="val.icon"></i>
-                                            <span>{{val.name}}</span>
-                                        </template>
-                                    </el-menu-item>
-                                </el-submenu>
-                                <!--不存在子节点-->
-                                <el-menu-item v-else :index="item.linkTo">
-                                    <template slot="title">
-                                        <i :class="item.icon"></i>
-                                        <span>{{item.name}}</span>
+                                        <i :class="val.icon"></i>
+                                        <span>{{val.name}}</span>
                                     </template>
                                 </el-menu-item>
-                            </div>
-                        </el-menu>
-                    </el-col>
-                </el-row>
+                            </el-submenu>
+                            <!--不存在子节点-->
+                            <el-menu-item v-else :index="item.linkTo">
+                                <template slot="title">
+                                    <i :class="item.icon"></i>
+                                    <span>{{item.name}}</span>
+                                </template>
+                            </el-menu-item>
+                        </div>
+                    </el-menu>
             </el-aside>
 
             <el-container>
@@ -65,7 +59,7 @@
                 </el-main>
                 <el-footer>
                     <el-breadcrumb separator="/">
-                        <el-breadcrumb-item>首页</el-breadcrumb-item>
+                        <el-breadcrumb-item v-show="!$route.matched.name">首页</el-breadcrumb-item>
                         <el-breadcrumb-item v-for="item in $route.matched" :key="item.path">
                             {{ item.name }}
                         </el-breadcrumb-item>
@@ -98,6 +92,7 @@
             }
         },
         created() {
+            console.log(this.$route.matched)
             // console.log(listData)
         },
         watch: {

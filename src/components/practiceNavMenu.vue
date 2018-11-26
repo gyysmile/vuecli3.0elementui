@@ -1,5 +1,6 @@
 <template>
     <div>
+        <h3>NavMenu 导航菜单</h3>
         <el-row>
         <el-menu
                 background-color="#F0F6F6"
@@ -250,7 +251,11 @@
                 ]
             }
         },
+        methods:{
+            handleSelect(){
 
+            }
+        }
 
     }
 </script>

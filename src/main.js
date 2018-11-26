@@ -6,8 +6,12 @@ import router from './router'
 import 'element-ui/lib/theme-chalk/base.css';
 // collapse 展开折叠
 import CollapseTransition from 'element-ui/lib/transitions/collapse-transition';
-Vue.component(CollapseTransition.name, CollapseTransition)
+Vue.component(CollapseTransition.name, CollapseTransition);
 import './css/index.css';
+import ElementUI from 'element-ui'
+// import './styles.scss'
+
+Vue.use(ElementUI)
 
 Vue.config.productionTip = false
 

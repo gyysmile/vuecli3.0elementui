@@ -9,6 +9,9 @@ const praticeContainer = r => require.ensure([], () => r(require('./components/p
 //1123
 const practiceRadio = r => require.ensure([], () => r(require('./components/practiceRadio.vue')), 'practiceRadio');//练习单选
 const practiceNavMenu = r => require.ensure([], () => r(require('./components/practiceNavMenu.vue')), 'practiceNavMenu');//练习navMenu
+//1126
+const practiceIpt = r => require.ensure([], () => r(require('./components/practiceIpt.vue')), 'practiceIpt');//练习单选
+const practiceIptNum = r => require.ensure([], () => r(require('./components/practiceIptNum.vue')), 'practiceIptNum');//练习navMenu
 
 Vue.use(Router);
 
@@ -19,12 +22,14 @@ export default new Router({
         {path: '/', redirect: '/home'}, // 默认路由
         {path: "/home", component: home},
         //1121
-        {path: "/practiceButton", component: practiceButton, name: "练习按钮"},
-        {path: "/practiceLayout", component: practiceLayout, name: "练习布局"},
-        {path: "/praticeContainer", component: praticeContainer, name: "练习布局"},
+        {path: "/practiceButton", component: practiceButton, name: "按钮"},
+        {path: "/practiceLayout", component: practiceLayout, name: "布局Layout"},
+        {path: "/praticeContainer", component: praticeContainer, name: "布局容器"},
         //1123
-        {path: "/practiceRadio", component: practiceRadio, name: "练习单选"},
-        {path: "/practiceNavMenu", component: practiceNavMenu, name: "练习navMenu"},
-
+        {path: "/practiceRadio", component: practiceRadio, name: "单选"},
+        {path: "/practiceNavMenu", component: practiceNavMenu, name: "navMenu"},
+        //1126
+        {path: "/practiceIpt", component: practiceIpt, name: "输入框"},
+        {path: "/practiceIptNum", component: practiceIptNum, name: "计数器"},
     ]
 })
